@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {WordType} from '../data/models';
+import {Type, WordType} from '../data/models';
 import {WORDS} from '../data/data-base';
 
 @Injectable({
@@ -23,5 +23,17 @@ export class WordsService {
   }
   getVerbs(): WordType[] {
     return this.verbs;
+  }
+
+  addNoun(value: WordType) {
+    this.nouns.push(value);
+  }
+
+  addVerb(value: WordType) {
+    this.verbs.push(value);
+  }
+  check() {
+    this.nouns.map(word => (word.correct = word.type === Type.NOUN));
+    this.verbs.map(word => (word.correct = word.type === Type.VERB));
   }
 }
